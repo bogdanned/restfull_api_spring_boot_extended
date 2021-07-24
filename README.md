@@ -19,10 +19,8 @@ You need [Maven](https://maven.apache.org/install.html) installed in order to ru
 
 Try to understand the code in the [payroll](src/main/java/payroll) folder and extend it so the following is achieved:
 
-1. Check the `swagger` UI at [http://localhost:8080/swagger-ui.html](http://localhost:8080/swagger-ui.html)
-
-![swagger_ui](screens/swagger_ui.png)
-
+1. Add a `swagger` file to provide documentation for the API clients
+  Note: *you can find step by step instructions [here](https://www.baeldung.com/swagger-2-documentation-for-spring-rest-api)*
 
 ### Solution
 
