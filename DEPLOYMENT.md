@@ -3,38 +3,9 @@
 ## Setup on a fresh instance
 
 #### 1. Install system dependencies
-- nginx(proxy server): `sudo amazon-linux-extras install nginx1`
 - java SDK(to run the app): `sudo amazon-linux-extras install java-openjdk11`
-- tar(to decompress the artifact): `sudo yum install tar`
-
-Utils:
-- check nginx version: `nginx -v`
 - check java version: `java -version`
 
-
-#### 1.1 Add a Nginx config:
-
-Add a new config to the default nginx server:
-
-```bash
-sudo nano /etc/nginx/default.d/my_app.conf
-```
-
-Add this to the new file so nginx will forward request to the .net app(running as a service):
-
-```
-    location / {
-        proxy_pass         http://127.0.0.1:8080;
-        proxy_http_version 1.1;
-        proxy_set_header   Upgrade $http_upgrade;
-        proxy_set_header   Connection keep-alive;
-        proxy_set_header   Host $host;
-        proxy_cache_bypass $http_upgrade;
-        proxy_set_header   X-Forwarded-For $proxy_add_x_forwarded_for;
-        proxy_set_header   X-Forwarded-Proto $scheme;
-    }
-
-```
 
 #### 2. Create a service file:
 
