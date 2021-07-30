@@ -16,6 +16,8 @@ class LoadDatabase {
 
   private static final Logger log = LoggerFactory.getLogger(LoadDatabase.class);
 
+
+  /*
   @Bean
   CommandLineRunner initDatabase(EmployeeRepository employeeRepository, ContractRepository contractRepo) {
 
@@ -26,4 +28,5 @@ class LoadDatabase {
       log.info("Preloading " + contractRepo.save(new Contract("freelance_contract")));
     };
   }
+  */
 }

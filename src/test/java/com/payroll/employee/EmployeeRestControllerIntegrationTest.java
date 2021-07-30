@@ -7,7 +7,6 @@ import static org.hamcrest.Matchers.hasSize;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -24,7 +23,7 @@ import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabas
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
-import org.springframework.http.MediaType;
+import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
@@ -36,7 +35,7 @@ import payroll.employee.EmployeeRepository;
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT, classes = PayrollApplication.class)
 @AutoConfigureMockMvc 
 @EnableAutoConfiguration(exclude=SecurityAutoConfiguration.class)
-// @TestPropertySource(locations = "classpath:application-integrationtest.properties")
+@TestPropertySource(locations = "classpath:application-test.properties")
 @AutoConfigureTestDatabase
 public class EmployeeRestControllerIntegrationTest {
 
@@ -71,8 +70,7 @@ public class EmployeeRestControllerIntegrationTest {
           .andExpect(status().isOk())
           // .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
           .andExpect(jsonPath("$", hasSize(greaterThanOrEqualTo(2))))
-          .andExpect(jsonPath("$[2].firstName", is("bob")))
-          .andExpect(jsonPath("$[3].firstName", is("alex")));
+          .andExpect(jsonPath("$[0].firstName", is("bob")));
         // @formatter:on
     }
 
